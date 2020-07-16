@@ -1,0 +1,33 @@
+body{
+    background-color: lightgreen;
+}
+section#board{
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    max-width: 400px;
+    margin: auto;
+}
+
+section#board .board-pixel{
+    background-color: lightgreen;
+    width: calc(100vw/20);
+    height: calc(100vw/20);
+    border: 1px solid white;
+}
+
+
+
+section#board .board-pixel[treat='1']{
+    background-color: salmon;
+}
+
+section#board .board-pixel[snakepiece='1']{
+    background-color: black;
+}
+
+@media screen and (min-width: 400px){
+    section#board .board-pixel{
+        width: calc(400px/20);
+        height: calc(400px/20);
+    }
+}
