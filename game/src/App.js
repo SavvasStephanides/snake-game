@@ -9,13 +9,14 @@ function App() {
   
   useEffect(() => {
     setTimeout(() => {
-      game.moveSnake()
+      game.gameLoop()
       setGame({...game})
-    }, 500)
+    }, 300)
   }, [game])
 
   return (
     <div className="App">
+      Score: {game.score}
       <section id="board">
       {
         getBoardPixels(game).map((pixel, index) => <div className={"board-pixel"} 
@@ -43,8 +44,8 @@ function App() {
 
 function getBoardPixels(game){
   var pixels = []
-  for(var y = 0 ; y < 20 ; y++){
-    for(var x = 0 ; x < 20 ; x++){
+  for(var y = 1 ; y <= 20 ; y++){
+    for(var x = 1 ; x <= 20 ; x++){
       pixels.push({
         x,
         y, 

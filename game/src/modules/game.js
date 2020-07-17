@@ -2,6 +2,8 @@ import Board from "./board"
 
 export default function Game(){
     var board = new Board()
+    var score = 0
+    var isPaused = true
 
     board.snake.coordinates = [
         {x: 10, y: 10},
@@ -12,8 +14,21 @@ export default function Game(){
 
     board.treat.coordinates = {x: 3, y: 3}
 
-    function setSnakeDirection(direction){
-        board.snake.direction = direction
+    function gameLoop(){
+        if(isPaused === true){
+            return
+        }
+
+        moveSnake()
+        if(snakeHasReachedTreat()){
+            changeTreatPosition()
+            expandSnake()
+            this.score = this.score + 1
+        }
+        if(snakeHasExitedTheBoard()){
+            alert("Final score: " + this.score)
+            window.location.reload()
+        }
     }
 
     function moveSnake(){
@@ -45,12 +60,14 @@ export default function Game(){
         board.snake.coordinates.pop()
     }
 
-    function expandSnake(){
-        var lastPixel = board.snake.coordinates[board.snake.coordinates.length - 1]
-        board.snake.coordinates.push({
-            x: lastPixel.x + 1,
-            y: lastPixel.y
-        })
+    function snakeHasReachedTreat(){
+        var snakeHead = board.snake.coordinates[0]
+        return snakeHead.x === board.treat.coordinates.x && snakeHead.y === board.treat.coordinates.y
+    }
+
+    function snakeHasExitedTheBoard(){
+        var snakeHead = board.snake.coordinates[0]
+        return (snakeHead.x > 20 || snakeHead.x < 1 || snakeHead.y > 20 || snakeHead.y < 1)
     }
 
     function changeTreatPosition(){
@@ -60,12 +77,24 @@ export default function Game(){
         }
     }
 
-    return {
-        board,
-        setSnakeDirection,
-        moveSnake,
-        expandSnake,
-        changeTreatPosition
+    function expandSnake(){
+        var lastPixel = board.snake.coordinates[board.snake.coordinates.length - 1]
+        board.snake.coordinates.push({
+            x: lastPixel.x,
+            y: lastPixel.y
+        })
+    }
 
+    function setSnakeDirection(direction){
+        board.snake.direction = direction
+    }
+
+    
+
+    return {
+        score,
+        board,
+        gameLoop,
+        setSnakeDirection
     }
 }
