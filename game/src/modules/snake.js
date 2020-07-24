@@ -39,10 +39,17 @@ export default function Snake(){
         })
     }
 
+    function snakeHasRunIntoItself(){
+        var snakeCoordinates = [...this.coordinates]
+        var head = snakeCoordinates.shift()
+        return snakeCoordinates.filter((coordinates) => coordinates.x === head.x && coordinates.y === head.y).length > 0
+    }
+
     return {
         coordinates,
         direction,
         moveSnake,
-        expandSnake
+        expandSnake,
+        snakeHasRunIntoItself
     }
 }

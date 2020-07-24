@@ -79,3 +79,38 @@ test("Snake expands when expandSnake() is called",() => {
     snake.expandSnake()
     expect(snake.coordinates.length).toBe(4)
 })
+
+test("snakeHasRanIntoItself() returns true when the snake ran into itself", () => {
+    var snake = new Snake()
+
+    snake.coordinates = [
+        {x: 3, y: 3},
+        {x: 3, y: 4},
+        {x: 3, y: 5},
+        {x: 4, y: 5},
+        {x: 5, y: 5},
+        {x: 5, y: 4},
+        {x: 5, y: 3},
+        {x: 4, y: 3},
+        {x: 3, y: 3}
+    ]
+
+    expect(snake.snakeHasRunIntoItself()).toBe(true)
+})
+
+test("snakeHasRunIntoItself() returns false when the snake hasn't run into itself", () => {
+    var snake = new Snake()
+
+    snake.coordinates = [
+        {x: 3, y: 3},
+        {x: 3, y: 4},
+        {x: 3, y: 5},
+        {x: 4, y: 5},
+        {x: 5, y: 5},
+        {x: 5, y: 4},
+        {x: 5, y: 3},
+        {x: 4, y: 3}    
+    ]
+
+    expect(snake.snakeHasRunIntoItself()).toBe(false)
+})

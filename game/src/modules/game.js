@@ -25,7 +25,8 @@ export default function Game(){
             board.snake.expandSnake()
             this.score = this.score + 1
         }
-        if(snakeHasExitedTheBoard()){
+
+        if(playerHasLost()){
             alert("Final score: " + this.score)
             window.location.reload()
         }
@@ -34,6 +35,10 @@ export default function Game(){
     function snakeHasReachedTreat(){
         var snakeHead = board.snake.coordinates[0]
         return snakeHead.x === board.treat.coordinates.x && snakeHead.y === board.treat.coordinates.y
+    }
+
+    function playerHasLost(){
+        return snakeHasExitedTheBoard() || board.snake.snakeHasRunIntoItself()
     }
 
     function snakeHasExitedTheBoard(){
