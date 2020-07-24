@@ -20,6 +20,9 @@ jobs:
     - name: Setup NodeJS
       uses: actions/setup-node@v1
 
+    - name: Go to game folder
+      run: cd game
+
     - name: Run npm install 
       run: npm install
       
