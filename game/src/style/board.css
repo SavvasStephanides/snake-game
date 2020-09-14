@@ -16,7 +16,8 @@ section#board .board-pixel{
 
 section#board .board-pixel[treat='1']{
     background-color: #eeeeee;
-    box-shadow: #eeeeee 0 0 30px 3px;
+    /* box-shadow: #eeeeee 0 0 30px 3px; */
+    animation: treat-shadow 6s infinite;
     z-index: 99;
 }
 
@@ -30,5 +31,17 @@ section#board .board-pixel[snakepiece='1']{
     section#board .board-pixel{
         width: calc(400px/20);
         height: calc(400px/20);
+    }
+}
+
+@keyframes treat-shadow {
+    0%{
+        box-shadow: #eeeeee 0 0 0px;
+    }
+    50%{
+        box-shadow: #eeeeee 0 0 30px 3px;
+    }
+    100%{
+        box-shadow: #eeeeee 0 0 0px;
     }
 }
