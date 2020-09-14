@@ -38,12 +38,8 @@ export default function Game(){
     }
 
     function playerHasLost(){
-        return snakeHasExitedTheBoard() || board.snake.snakeHasRunIntoItself()
-    }
-
-    function snakeHasExitedTheBoard(){
-        var snakeHead = board.snake.coordinates[0]
-        return (snakeHead.x > 20 || snakeHead.x < 1 || snakeHead.y > 20 || snakeHead.y < 1)
+        return !board.snake.snakeIsWithinBoundaries({x: 20, y: 20}) 
+                || board.snake.snakeHasRunIntoItself()
     }
 
     function setSnakeDirection(direction){

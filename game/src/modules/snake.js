@@ -45,11 +45,18 @@ export default function Snake(){
         return snakeCoordinates.filter((coordinates) => coordinates.x === head.x && coordinates.y === head.y).length > 0
     }
 
+    function snakeIsWithinBoundaries(maximumBorder){
+        var coordinatesBeyondBorder = this.coordinates.filter((coordinate) => coordinate.x < 1 || coordinate.y < 1 || coordinate.x > maximumBorder.x || coordinate.y > maximumBorder.y)
+        var numberOfCoordinatesBeyondBorder = coordinatesBeyondBorder.length
+        return numberOfCoordinatesBeyondBorder === 0
+    } 
+
     return {
         coordinates,
         direction,
         moveSnake,
         expandSnake,
-        snakeHasRunIntoItself
+        snakeHasRunIntoItself,
+        snakeIsWithinBoundaries
     }
 }

@@ -6,19 +6,24 @@ section#board{
 }
 
 section#board .board-pixel{
-    background-color: lightgreen;
+    background-color: #393e46;
     width: calc(100vw/20);
     height: calc(100vw/20);
+    transition: box-shadow 2s;
 }
 
 
 
 section#board .board-pixel[treat='1']{
-    background-color: darkgreen;
+    background-color: #eeeeee;
+    box-shadow: #eeeeee 0 0 30px 3px;
+    z-index: 99;
 }
 
 section#board .board-pixel[snakepiece='1']{
-    background-color: black;
+    background-color: #32e0c4;
+    box-shadow: #32e0c4 0 0 30px 3px;
+    z-index: 100;
 }
 
 @media screen and (min-width: 400px){

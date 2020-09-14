@@ -114,3 +114,42 @@ test("snakeHasRunIntoItself() returns false when the snake hasn't run into itsel
 
     expect(snake.snakeHasRunIntoItself()).toBe(false)
 })
+
+test("snakeIsWithinBoundaries() returns true when the snake is within given x,y boundaries", () => {
+    var snake = new Snake()
+    snake.coordinates = [
+        {x: 3, y: 3},
+        {x: 3, y: 4},
+        {x: 3, y: 5},
+        {x: 4, y: 5},
+        {x: 5, y: 5},
+        {x: 5, y: 4},
+        {x: 5, y: 3},
+        {x: 4, y: 3}    
+    ]
+
+    expect(snake.snakeIsWithinBoundaries({x: 20, y: 20})).toBe(true)
+})
+
+test("snakeIsWithinBoundaries() returns false when the snake is outside given x,y boundaries", () => {
+    var snake = new Snake()
+    snake.coordinates = [
+        {x: 21, y: 3},
+        {x: 20, y: 3}, 
+        {x: 19, y: 3}
+    ]
+
+    expect(snake.snakeIsWithinBoundaries({x: 20, y: 20})).toBe(false)
+})
+
+test("snakeIsWithinBoundaries() returns true when x<1", () => {
+    var snake = new Snake()
+    snake.coordinates = [
+        {x: 0, y: 3},
+        {x: 1, y: 3},
+        {x: 2, y: 3}
+        
+    ]
+
+    expect(snake.snakeIsWithinBoundaries({x: 20, y: 20})).toBe(false)
+})
