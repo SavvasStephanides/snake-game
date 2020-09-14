@@ -5,7 +5,9 @@ import "./style/controls.css"
 import Game from "./modules/game"
 
 function App() {
+  
   const [game, setGame] = useState(new Game())
+  addArrowKeyListeners(game)
   
   useEffect(() => {
     setTimeout(() => {
@@ -13,7 +15,6 @@ function App() {
       setGame({...game})
     }, 300)
   }, [game])
-
   return (
     <div className="App">
       <div className="score-display">Score: {game.score}</div>
@@ -57,6 +58,34 @@ function getBoardPixels(game){
   }
   return pixels
           
+}
+
+function addArrowKeyListeners(game){
+  document.addEventListener("keydown", (event) => {
+    var keyPressed = event.key
+
+    switch(keyPressed){
+      case "ArrowUp":
+        game.setSnakeDirection("UP")
+        break
+
+      case "ArrowDown":
+        game.setSnakeDirection("DOWN")
+        break
+
+      case "ArrowLeft":
+        game.setSnakeDirection("LEFT")
+        break
+
+      case "ArrowRight":
+        game.setSnakeDirection("RIGHT")
+        break
+
+      default:
+        console.log("Only arrow keys do anything here");
+    }
+  })
+
 }
 
 export default App;
