@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      Score: {game.score}
+      <div className="score-display">Score: {game.score}</div>
       <section id="board">
       {
         getBoardPixels(game).map((pixel, index) => <div className={"board-pixel"} 

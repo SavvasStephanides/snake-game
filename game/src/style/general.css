@@ -6,3 +6,7 @@ body{
     background-color: #222831;
     color: white;
 }
+
+.score-display{
+    text-align: center;
+}
