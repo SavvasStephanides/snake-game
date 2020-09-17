@@ -3,10 +3,12 @@ import "./style/general.css"
 import "./style/board.css"
 import "./style/controls.css"
 import Game from "./modules/game"
+import SplashScreen from "./SplashScreen"
 
 function App() {
   
   const [game, setGame] = useState(new Game())
+  const [splashScreenIsVisible, setSplashScreenIsVisible] = useState(true)
   addArrowKeyListeners(game)
   
   useEffect(() => {
@@ -39,6 +41,7 @@ function App() {
         <button onClick={() => game.setSnakeDirection("DOWN")}>DOWN</button>
         <div></div>
       </section>
+      <SplashScreen show={splashScreenIsVisible ? "1" : "0"} setSplashScreenIsVisible={setSplashScreenIsVisible}/>
     </div>
   );
 }
