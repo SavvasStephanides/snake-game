@@ -3,12 +3,10 @@ import "./style/general.css"
 import "./style/board.css"
 import "./style/controls.css"
 import Game from "./modules/game"
-import SplashScreen from "./SplashScreen"
 
 function App() {
   
   const [game, setGame] = useState(new Game())
-  const [splashScreenIsVisible, setSplashScreenIsVisible] = useState(true)
   addArrowKeyListeners(game)
   
   useEffect(() => {
@@ -17,6 +15,7 @@ function App() {
       setGame({...game})
     }, 300)
   }, [game])
+
   return (
     <div className="App">
       <div className="score-display">Score: {game.score}</div>
@@ -30,20 +29,9 @@ function App() {
         </div>)
       }
       </section>
-      <section id="controls">
-        <div></div>
-        <button onClick={() => game.setSnakeDirection("UP")}>UP</button>
-        <div></div>
-        <button onClick={() => game.setSnakeDirection("LEFT")}>LEFT</button>
-        <div></div>
-        <button onClick={() => game.setSnakeDirection("RIGHT")}>RIGHT</button>
-        <div></div>
-        <button onClick={() => game.setSnakeDirection("DOWN")}>DOWN</button>
-        <div></div>
-      </section>
-      <SplashScreen show={splashScreenIsVisible ? "1" : "0"} setSplashScreenIsVisible={setSplashScreenIsVisible}/>
+      <Controls setSnakeDirection={game.setSnakeDirection}/>
     </div>
-  );
+  )
 }
 
 function getBoardPixels(game){
@@ -61,6 +49,22 @@ function getBoardPixels(game){
   }
   return pixels
           
+}
+
+function Controls({setSnakeDirection}){
+  return (
+    <section id="controls">
+      <div></div>
+      <button onClick={() => setSnakeDirection("UP")}>UP</button>
+      <div></div>
+      <button onClick={() => setSnakeDirection("LEFT")}>LEFT</button>
+      <div></div>
+      <button onClick={() => setSnakeDirection("RIGHT")}>RIGHT</button>
+      <div></div>
+      <button onClick={() => setSnakeDirection("DOWN")}>DOWN</button>
+      <div></div>
+    </section>
+  )
 }
 
 function addArrowKeyListeners(game){
