@@ -19,18 +19,24 @@ function App() {
   return (
     <div className="App">
       <div className="score-display">Score: {game.score}</div>
-      <section id="board">
-      {
-        getBoardPixels(game).map((pixel, index) => <div className={"board-pixel"} 
-          key={index} x={pixel.x} y={pixel.y} 
-          snakepiece={pixel.hasSnakePiece === true ? "1": "0"}
-          treat={pixel.hasTreat === true ? "1": "0"}>
-
-        </div>)
-      }
-      </section>
+      <Board game={game}/>
       <Controls setSnakeDirection={game.setSnakeDirection}/>
     </div>
+  )
+}
+
+function Board({game}){
+  return (
+    <section id="board">
+    {
+      getBoardPixels(game).map((pixel, index) => <div className={"board-pixel"} 
+        key={index} x={pixel.x} y={pixel.y} 
+        snakepiece={pixel.hasSnakePiece === true ? "1": "0"}
+        treat={pixel.hasTreat === true ? "1": "0"}>
+
+      </div>)
+    }
+    </section>
   )
 }
 
