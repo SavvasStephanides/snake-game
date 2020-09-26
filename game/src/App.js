@@ -3,6 +3,7 @@ import "./style/general.css"
 import "./style/board.css"
 import "./style/controls.css"
 import Game from "./modules/game"
+import SplashScreen from "./SplashScreen"
 
 function App() {
   
@@ -21,6 +22,9 @@ function App() {
       <div className="score-display">Score: {game.score}</div>
       <Board game={game}/>
       <Controls setSnakeDirection={game.setSnakeDirection}/>
+
+      <SplashScreen show={game.getIsPaused() ? "1" : "0"} resumeGame={() => game.resumeGame()}/>
+
     </div>
   )
 }

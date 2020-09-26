@@ -3,7 +3,7 @@ import Board from "./board"
 export default function Game(){
     var board = new Board()
     var score = 0
-    var isPaused = false
+    var isPaused = true
 
     board.snake.coordinates = [
         {x: 10, y: 10},
@@ -46,12 +46,26 @@ export default function Game(){
         board.snake.direction = direction
     }
 
-    
+    function resumeGame(){
+        isPaused = false
+    }
+
+    function pauseGame(){
+        isPaused = true
+    }
+
+    function getIsPaused(){
+        return isPaused
+    }
 
     return {
         score,
         board,
         gameLoop,
-        setSnakeDirection
+        setSnakeDirection,
+        resumeGame,
+        pauseGame,
+        getIsPaused,
+        isPaused
     }
 }
