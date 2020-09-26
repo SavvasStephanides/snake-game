@@ -21,9 +21,9 @@ function App() {
     <div className="App">
       <div className="score-display">Score: {game.score}</div>
       <Board game={game}/>
-      <Controls setSnakeDirection={game.setSnakeDirection}/>
+      <Controls setSnakeDirection={game.setSnakeDirection} pauseGame={game.pauseGame}/>
 
-      <SplashScreen show={"0"} resumeGame={() => game.resumeGame()}/>
+      <SplashScreen show={game.getIsPaused() ? "1" : "0"} resumeGame={() => game.resumeGame()}/>
 
     </div>
   )
@@ -61,13 +61,14 @@ function getBoardPixels(game){
           
 }
 
-function Controls({setSnakeDirection}){
+function Controls({setSnakeDirection, pauseGame}){
   return (
     <section id="controls">
       <button onClick={() => setSnakeDirection("UP")} className="up-button">UP</button>
       <button onClick={() => setSnakeDirection("LEFT")} className="left-button">LEFT</button>
       <button onClick={() => setSnakeDirection("RIGHT")} className="right-button">RIGHT</button>
       <button onClick={() => setSnakeDirection("DOWN")} className="down-button">DOWN</button>
+      <button onClick={() => pauseGame()} className="pause-button">Pause</button>
     </section>
   )
 }

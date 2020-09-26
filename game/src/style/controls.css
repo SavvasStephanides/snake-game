@@ -29,3 +29,7 @@ section#controls button.down-button{
     grid-column: 2;
     grid-row: 3;
 }
+section#controls button.pause-button{
+    grid-column: 2;
+    grid-row: 2;
+}
